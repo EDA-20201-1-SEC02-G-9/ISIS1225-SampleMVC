@@ -42,7 +42,7 @@ def printMenu():
     print("Opciones:")
     print("1- Cargar Libros")
     print("2- Cargar Tags")
-    # TO-DO: Modificaciones para completar el laboratorio 1.
+    print("3 - Cargar Tags de Libros")
     print("0- Salir")
 
 
@@ -50,7 +50,7 @@ def loadBooks():
     """
     Carga los libros
     """
-    return controller.loadBooks('GoodReads/books-small.csv')
+    return controller.loadBooks('GoodReads/books.csv')
 
 
 def loadTags():
@@ -60,23 +60,36 @@ def loadTags():
     return controller.loadTags('GoodReads/tags.csv')
 
 
+def loadBooksTags():
+    """
+    Carga los tags de los libros
+    """
+    return controller.loadBooksTags('GoodReads/book_tags.csv')
+
 """
 Menu principal
 """
-while True:
-    printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
-    if int(inputs[0]) == 1:
-        print("Cargando información de libros....")
-        books = loadBooks()
-        print('Total de libros cargados: ' + str(lt.size(books)))
+def main():
+    while True:
+        printMenu()
+        inputs = input('Seleccione una opción para continuar\n')
+        if int(inputs[0]) == 1:
+            print("Cargando información de libros....")
+            books = loadBooks()
+            print('Total de libros cargados: ' + str(lt.size(books)))
 
-    elif int(inputs[0]) == 2:
-        print("Cargando información de tags....")
-        tags = loadTags()
-        print('Total de tags cargados: ' + str(lt.size(tags)))
-    # TO-DO: Modificaciones para completar el laboratorio 1.
+        elif int(inputs[0]) == 2:
+            print("Cargando información de tags....")
+            tags = loadTags()
+            print('Total de tags cargados: ' + str(lt.size(tags)))
+        elif int(inputs[0]) == 3:
+            print("Cargando información de tags de libros...")
+            book_tags = loadBooksTags()
+            print('Total de tags de libros cargados: ' + str(lt.size(book_tags)))
+        else:
+            sys.exit(0)
+    sys.exit(0)
 
-    else:
-        sys.exit(0)
-sys.exit(0)
+
+if __name__=='__main__':
+    main()
